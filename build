@@ -1,0 +1,26 @@
+#!/bin/sh
+
+#CC=arm-arago-linux-gnueabi-
+#CC=/home/chenxibing/ti-sdk-am335x-evm-06.00.00.00/linux-devkit/sysroots/i686-arago-linux/usr/bin/arm-linux-gnueabihf-
+#CC=/home/i686-arago-linux/usr/bin/arm-linux-gnueabihf-
+#CC=arm-none-linux-gnueabi-
+CC=arm-eabi-
+#make CROSS_COMPILE=$CC ARCH=arm distclean
+#make CROSS_COMPILE=$CC ARCH=arm m3352_defconfig
+#make CROSS_COMPILE=$CC ARCH=arm menuconfig
+make CROSS_COMPILE=$CC ARCH=arm uImage  -j8
+#make CROSS_COMPILE=$CC ARCH=arm uImage
+#make CROSS_COMPILE=$CC ARCH=arm modules
+#sudo make CROSS_COMPILE=$CC ARCH=arm modules_install
+
+#make CROSS_COMPILE=arm-none-linux-gnueabi-  ARCH=arm menuconfig
+#make CROSS_COMPILE=arm-eabi-  ARCH=arm menuconfig
+#cp -v arch/arm/boot/uImage ../images/
+#cp -v arch/arm/boot/uImage /tmp
+#sudo cp -av drivers/mtd/devices/omap2_elm.ko /home/chenxibing/rootfs/root
+#sudo cp -av drivers/mtd/nand/omap2.ko /home/chenxibing/rootfs/root
+TFTP_DIR=/home/cheng/tftproot
+cp arch/arm/boot/uImage $TFTP_DIR/
+ls $TFTP_DIR/
+
+#make CROSS_COMPILE=arm-none-linux-gnueabi- ARCH=arm modules SUBDIRS=drivers/input/keyboard
