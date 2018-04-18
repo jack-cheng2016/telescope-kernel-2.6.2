@@ -19,10 +19,14 @@
 #define DAVINCI_MCASP_H
 
 #include <linux/io.h>
-#include <mach/asp.h>
-#include "davinci-pcm.h"
 
-extern struct snd_soc_dai davinci_mcasp_dai[];
+#ifndef CONFIG_ARCH_TI81XX
+#include <mach/asp.h>
+#else
+#include <plat/asp.h>
+#endif
+
+#include "davinci-pcm.h"
 
 #define DAVINCI_MCASP_RATES	SNDRV_PCM_RATE_8000_96000
 #define DAVINCI_MCASP_I2S_DAI	0
@@ -44,6 +48,7 @@ struct davinci_audio_dev {
 	int sample_rate;
 	struct clk *clk;
 	unsigned int codec_fmt;
+	u8 clk_active;
 
 	/* McASP specific data */
 	int	tdm_slots;
